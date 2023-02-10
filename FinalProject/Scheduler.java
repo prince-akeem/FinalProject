@@ -15,7 +15,7 @@ class Main{
     System.out.println("\t Menu Options\t\t\t Input Key");
     System.out.println("\tUpdate Company Info\t\t  1");
     System.out.println("\tAdd New Purchase\t\t  2");
-    System.out.println("\tSchedule Maintance\t\t  3");
+    System.out.println("\tSchedule Home Run\t\t  3");
     userMenuChoose = userInput.nextInt();
     //userInput.close();
     System.out.println(userMenuChoose);
@@ -31,8 +31,12 @@ class Main{
   public static void main(String args[]){
     Scanner userInput = new Scanner(System.in);
     ServiceRequest userRequest = new ServiceRequest();
+    HomeRunRequest userHomeRequest = new HomeRunRequest();
     int menuOption;
+    char anotherItem;
+    int numberOfItems = 0;
     CompanyInfo companyHandler = new CompanyInfo();
+
 
     companyHandler.printCompanyInfo();
 
@@ -46,8 +50,8 @@ class Main{
         break;
 
       case 2:
-        char anotherItem;
-        int numberOfItems = 0;
+        numberOfItems = 0;
+
         do{
           System.out.println("You selected to add a new purchase.");
           userRequest.showServices(numberOfItems);
@@ -65,7 +69,22 @@ class Main{
         break;
 
       case 3:
-        System.out.println("You selected option 2.");
+        numberOfItems = 0;
+
+        do{
+          System.out.println("You selected to schedule a home run.");
+          userHomeRequest.showHomeRuns(numberOfItems);
+          numberOfItems++;
+          System.out.print("Would you like to add another item?(y|n) ");
+          anotherItem = userInput.next().charAt(0);
+          
+          while(anotherItem != 'n' && anotherItem != 'y'){
+            System.out.print("Enter 'n' or 'y': ");
+            anotherItem = userInput.next().charAt(0);
+          }
+        } while(anotherItem == 'y');
+
+        userHomeRequest.PrintReceipt(numberOfItems);
         break;
 
       default:
