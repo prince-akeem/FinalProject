@@ -34,13 +34,12 @@ class CompanyInfo{
     }
     public boolean updateCompanyInfo(){
         Scanner userInput = new Scanner(System.in);
-        String userSaid;
 
         System.out.print("Enter the secret Key: ");
-        userSaid = userInput.nextLine();
+        String userSaid = userInput.nextLine();
 
-        if(userSaid != "development") return false;
-        userInput.close();
+        if(!userSaid.equalsIgnoreCase("development")) return false;
+
       try{
         FileWriter saveCompanyData = new FileWriter("FinalProject/Company Data.txt");
   

@@ -32,7 +32,6 @@ class Main{
     Scanner userInput = new Scanner(System.in);
     ServiceRequest userRequest = new ServiceRequest();
     int menuOption;
-
     CompanyInfo companyHandler = new CompanyInfo();
 
     companyHandler.printCompanyInfo();
