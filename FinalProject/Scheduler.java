@@ -40,56 +40,63 @@ class Main{
 
     companyHandler.printCompanyInfo();
 
-    menuOption = getMenuResponse();
+    do{
+      System.out.print("\033[H\033[2J");
+      menuOption = getMenuResponse();
 
-    switch(menuOption){
-      case 1:
-        if(companyHandler.updateCompanyInfo()) {
-          System.out.println("Update Successful!!");
-        }
-        break;
-
-      case 2:
-        numberOfItems = 0;
-
-        do{
-          System.out.println("You selected to add a new purchase.");
-          userRequest.showServices(numberOfItems);
-          numberOfItems++;
-          System.out.print("Would you like to add another item?(y|n) ");
-          anotherItem = userInput.next().charAt(0);
-          
-          while(anotherItem != 'n' && anotherItem != 'y'){
-            System.out.print("Enter 'n' or 'y': ");
-            anotherItem = userInput.next().charAt(0);
+      switch(menuOption){
+        case 1:
+          if(companyHandler.updateCompanyInfo()) {
+            System.out.println("Update Successful!!");
           }
-        } while(anotherItem == 'y');
+          break;
 
-        userRequest.PrintReceipt(numberOfItems);
-        break;
+        case 2:
+          numberOfItems = 0;
 
-      case 3:
-        numberOfItems = 0;
-
-        do{
-          System.out.println("You selected to schedule a home run.");
-          userHomeRequest.showHomeRuns(numberOfItems);
-          numberOfItems++;
-          System.out.print("Would you like to add another item?(y|n) ");
-          anotherItem = userInput.next().charAt(0);
-          
-          while(anotherItem != 'n' && anotherItem != 'y'){
-            System.out.print("Enter 'n' or 'y': ");
+          do{
+            System.out.println("You selected to add a new purchase.");
+            userRequest.showServices(numberOfItems);
+            numberOfItems++;
+            System.out.print("Would you like to add another item?(y|n) ");
             anotherItem = userInput.next().charAt(0);
-          }
-        } while(anotherItem == 'y');
+            
+            while(anotherItem != 'n' && anotherItem != 'y'){
+              System.out.print("Enter 'n' or 'y': ");
+              anotherItem = userInput.next().charAt(0);
+            }
+          } while(anotherItem == 'y');
 
-        userHomeRequest.PrintReceipt(numberOfItems);
-        break;
+          userRequest.PrintReceipt(numberOfItems);
+          break;
 
-      default:
-        System.out.println("Unexpected error");
-    }
+        case 3:
+          numberOfItems = 0;
+
+          do{
+            System.out.println("You selected to schedule a home run.");
+            userHomeRequest.showHomeRuns(numberOfItems);
+            numberOfItems++;
+            System.out.print("Would you like to add another item?(y|n) ");
+            anotherItem = userInput.next().charAt(0);
+            
+            while(anotherItem != 'n' && anotherItem != 'y'){
+              System.out.print("Enter 'n' or 'y': ");
+              anotherItem = userInput.next().charAt(0);
+            }
+          } while(anotherItem == 'y');
+
+          userHomeRequest.PrintReceipt(numberOfItems);
+          break;
+
+        default:
+          System.out.println("Unexpected error");
+      }
+
+      userInput = new Scanner(System.in);
+      System.out.print("Do you want to return to the main menu?(y|n) ");
+      anotherItem = userInput.next().charAt(0);
+    } while(anotherItem == 'y');
 
     userInput.close();
   }
