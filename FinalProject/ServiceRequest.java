@@ -45,8 +45,8 @@ class ServicesMain{
           }
           saveOrder.write(servicePrice + "\n");
     
+          userInput = new Scanner(System.in);
           System.out.print("\nPlease enter the name for the order: ");
-          userInput.nextLine();
           String temp = userInput.nextLine();
     
           saveOrder.write(temp + "\n");
@@ -118,6 +118,7 @@ class HomeRunRequest extends ServicesMain{
             priceOfRug *= 3.5;
         }
 
+        userInput = new Scanner(System.in);
         System.out.print("Enter date and time for arrival: ");
         deliveryTime = userInput.nextLine();
 
